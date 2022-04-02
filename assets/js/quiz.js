@@ -18,8 +18,9 @@ const testQuestion = {
 
 var time = 20;
 var score = 0;
+var question = questionBank.getNextQuestion();
 
-loadTestQuestion();
+updateQuestionElements();
 updateScoreElement();
 var timeIntervalId = window.setInterval(function()
 {
@@ -29,13 +30,13 @@ var timeIntervalId = window.setInterval(function()
 }, 1000);
 updateTimeElement();
 
-function loadTestQuestion()
+function updateQuestionElements()
 {
-    quizQuestionElement.textContent = testQuestion.questionText;
-    choiceAElement.textContent = testQuestion.choiceA;
-    choiceBElement.textContent = testQuestion.choiceB;
-    choiceCElement.textContent = testQuestion.choiceC;
-    choiceDElement.textContent = testQuestion.choiceD;
+    quizQuestionElement.textContent = question.questionText;
+    choiceAElement.textContent = question.choiceA;
+    choiceBElement.textContent = question.choiceB;
+    choiceCElement.textContent = question.choiceC;
+    choiceDElement.textContent = question.choiceD;
 }
 
 choicesElement.addEventListener("click", function(event)
@@ -49,7 +50,7 @@ choicesElement.addEventListener("click", function(event)
 
 function selectChoice(choice)
 {
-    if(choice == testQuestion.correctChoice)
+    if(choice == question.correctChoice)
     {
         score++;
         updateScoreElement();
