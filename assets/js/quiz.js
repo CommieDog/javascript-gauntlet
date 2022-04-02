@@ -1,4 +1,5 @@
 const quizQuestionElement = document.querySelector("#quiz-question");
+const scoreValueElement = document.querySelector("#score-value");
 const choicesElement = document.querySelector("#choices")
 const choiceAElement = document.querySelector("#choice-a-text");
 const choiceBElement = document.querySelector("#choice-b-text");
@@ -14,7 +15,10 @@ const testQuestion = {
     correctChoice: 0
 }
 
+var score = 0;
+
 loadTestQuestion();
+updateScoreElement();
 
 function loadTestQuestion()
 {
@@ -40,9 +44,16 @@ function selectChoice(choice)
     if(choice == testQuestion.correctChoice)
     {
         alert("You were correct!");
+        score++;
+        updateScoreElement();
     }
     else
     {
         alert("You were wrong!!!");
     }
+}
+
+function updateScoreElement()
+{
+    scoreValueElement.textContent = score;
 }

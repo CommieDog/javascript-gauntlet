@@ -45,7 +45,13 @@ footer h2 {
     flex-grow: 1;
 }
 
-#timer {
+#quiz-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#score, #timer {
     height: 20px;
-    margin-top: auto;
+    margin: 5px;
 }
