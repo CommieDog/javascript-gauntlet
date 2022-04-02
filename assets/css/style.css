@@ -36,3 +36,16 @@ footer h2 {
     font-size: 24px;
     text-align: center;
 }
+
+#quiz-header {
+    display: flex;
+}
+
+#quiz-question {
+    flex-grow: 1;
+}
+
+#timer {
+    height: 20px;
+    margin-top: auto;
+}
