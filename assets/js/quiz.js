@@ -1,5 +1,6 @@
 const quizQuestionElement = document.querySelector("#quiz-question");
 const scoreValueElement = document.querySelector("#score-value");
+const timeValueElement = document.querySelector("#timer-value");
 const choicesElement = document.querySelector("#choices")
 const choiceAElement = document.querySelector("#choice-a-text");
 const choiceBElement = document.querySelector("#choice-b-text");
@@ -15,10 +16,22 @@ const testQuestion = {
     correctChoice: 0
 }
 
+var time = 10;
 var score = 0;
 
 loadTestQuestion();
 updateScoreElement();
+var timeIntervalId = window.setInterval(function()
+{
+    time--;
+    updateTimeElement();
+    if(time <= 0)
+    {
+        alert("Time's up!")
+        window.clearInterval(timeIntervalId);
+    }
+}, 1000);
+updateTimeElement();
 
 function loadTestQuestion()
 {
@@ -40,10 +53,10 @@ choicesElement.addEventListener("click", function(event)
 
 function selectChoice(choice)
 {
-    alert("You selected choice " + choice + "\nThe correct choice was " + testQuestion.correctChoice);
+    //alert("You selected choice " + choice + "\nThe correct choice was " + testQuestion.correctChoice);
     if(choice == testQuestion.correctChoice)
     {
-        alert("You were correct!");
+        //alert("You were correct!");
         score++;
         updateScoreElement();
     }
@@ -56,4 +69,9 @@ function selectChoice(choice)
 function updateScoreElement()
 {
     scoreValueElement.textContent = score;
+}
+
+function updateTimeElement()
+{
+    timeValueElement.textContent = time;
 }
