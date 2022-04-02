@@ -16,7 +16,7 @@ const testQuestion = {
     correctChoice: 0
 }
 
-var time = 10;
+var time = 20;
 var score = 0;
 
 loadTestQuestion();
@@ -25,11 +25,7 @@ var timeIntervalId = window.setInterval(function()
 {
     time--;
     updateTimeElement();
-    if(time <= 0)
-    {
-        alert("Time's up!")
-        window.clearInterval(timeIntervalId);
-    }
+    checkTime();
 }, 1000);
 updateTimeElement();
 
@@ -53,16 +49,14 @@ choicesElement.addEventListener("click", function(event)
 
 function selectChoice(choice)
 {
-    //alert("You selected choice " + choice + "\nThe correct choice was " + testQuestion.correctChoice);
     if(choice == testQuestion.correctChoice)
     {
-        //alert("You were correct!");
         score++;
         updateScoreElement();
     }
     else
     {
-        alert("You were wrong!!!");
+        applyTimePenalty()
     }
 }
 
@@ -74,4 +68,21 @@ function updateScoreElement()
 function updateTimeElement()
 {
     timeValueElement.textContent = time;
+}
+
+function applyTimePenalty()
+{
+    time -= 4;
+    time = Math.max(0, time); // Don't allow negative values
+    updateTimeElement();
+    checkTime();
+}
+
+function checkTime()
+{
+    if(time <= 0)
+    {
+        alert("Time's up!")
+        window.clearInterval(timeIntervalId);
+    }
 }
