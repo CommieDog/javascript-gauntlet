@@ -59,6 +59,8 @@ function selectChoice(choice)
     {
         applyTimePenalty()
     }
+    question = questionBank.getNextQuestion();
+    updateQuestionElements();
 }
 
 function updateScoreElement()
