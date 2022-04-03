@@ -100,6 +100,7 @@ function checkTime()
     if(time <= 0)
     {
         window.clearInterval(timeIntervalId);
+        window.sessionStorage.setItem("FinalScore", score);
         window.location.href = "score.html";
     }
 }
