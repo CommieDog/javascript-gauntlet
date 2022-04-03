@@ -23,6 +23,26 @@ p, a {
     font-size: 18px;
 }
 
+.clickable {
+    cursor: pointer;
+    background-color: darkred;
+    color: azure;
+    margin: 30px 0px;
+    padding: 20px;
+    border: 2px outset black;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.quiz-choice {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.quiz-choice-text {
+    font-weight: normal;
+}
+
 #begin-gauntlet {
     font-family: monospace;
     font-size: 32px;

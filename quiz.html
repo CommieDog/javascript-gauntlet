@@ -6,21 +6,24 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body>
-        <section>
-            <header id="quiz-header">
-                <h1 id="quiz-question">Test Question</h1>
+        <header>
+            <h1>The JavaScript Gauntlet</h1>
+        </header>
+        <main>
+            <section id="quiz-header">
+                <h2 id="quiz-question">Test Question</h2>
                 <div id="quiz-state">
                     <p id="timer">Score: <span id="score-value"></span></p>
                     <p id="timer">Time Left: <span id="timer-value"></span></p>
                 </div>
-            </header>
-            <main id="choices">
-                <div data-choice="0">A: <span id="choice-a-text"></span></div>
-                <div data-choice="1">B: <span id="choice-b-text"></span></div>
-                <div data-choice="2">C: <span id="choice-c-text"></span></div>
-                <div data-choice="3">D: <span id="choice-d-text"></span></div>
-            </main>
-        </section>
+            </section>
+            <section id="choices">
+                <div class="clickable quiz-choice" data-choice="0">A: <span id="choice-a-text" class="quiz-choice-text"></span></div>
+                <div class="clickable quiz-choice" data-choice="1">B: <span id="choice-b-text" class="quiz-choice-text"></span></div>
+                <div class="clickable quiz-choice" data-choice="2">C: <span id="choice-c-text" class="quiz-choice-text"></span></div>
+                <div class="clickable quiz-choice" data-choice="3">D: <span id="choice-d-text" class="quiz-choice-text"></span></div>
+            </section>
+        </main>
         <script src="assets/js/questions.js"></script>
         <script src="assets/js/quiz.js"></script>
     </body>
