@@ -42,9 +42,23 @@ function updateQuestionElements()
 choicesElement.addEventListener("click", function(event)
 {
     var selectedChoiceElement = event.target;
+    selectedChoiceElement = getContainingDivElement(selectedChoiceElement)
     if(selectedChoiceElement.matches("div"))
     {
         selectChoice(selectedChoiceElement.dataset.choice);
+    }
+
+    function getContainingDivElement(element)
+    {
+        if(element.matches("div"))
+        {
+            return element;
+        }
+        if(element === choicesElement)
+        {
+            return null;
+        }
+        return getContainingDivElement(element.parentNode);
     }
 });
 
