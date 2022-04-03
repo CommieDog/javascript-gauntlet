@@ -18,8 +18,8 @@ const testQuestion = {
 
 var time = 20;
 var score = 0;
-var question = questionBank.getNextQuestion();
 
+//questionBank.getNextQuestion();
 updateQuestionElements();
 updateScoreElement();
 var timeIntervalId = window.setInterval(function()
@@ -32,11 +32,11 @@ updateTimeElement();
 
 function updateQuestionElements()
 {
-    quizQuestionElement.textContent = question.questionText;
-    choiceAElement.textContent = question.choiceA;
-    choiceBElement.textContent = question.choiceB;
-    choiceCElement.textContent = question.choiceC;
-    choiceDElement.textContent = question.choiceD;
+    quizQuestionElement.textContent = questionBank.currentQuestion.questionText;
+    choiceAElement.textContent = questionBank.currentQuestion.choiceA;
+    choiceBElement.textContent = questionBank.currentQuestion.choiceB;
+    choiceCElement.textContent = questionBank.currentQuestion.choiceC;
+    choiceDElement.textContent = questionBank.currentQuestion.choiceD;
 }
 
 choicesElement.addEventListener("click", function(event)
@@ -50,7 +50,7 @@ choicesElement.addEventListener("click", function(event)
 
 function selectChoice(choice)
 {
-    if(choice == question.correctChoice)
+    if(choice == questionBank.currentQuestion.correctChoice)
     {
         score++;
         updateScoreElement();
@@ -59,7 +59,7 @@ function selectChoice(choice)
     {
         applyTimePenalty()
     }
-    question = questionBank.getNextQuestion();
+    questionBank.selectNextQuestion();
     updateQuestionElements();
 }
 

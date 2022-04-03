@@ -1,10 +1,18 @@
-var questionBank = {
+var questionBank =
+{
     questions: [],
-    getNextQuestion: function()
+    currentQuestion: null,
+    selectNextQuestion: function()
     {
-        //var currentQuestionId = currentQuestion.questionId;
-        return getRandomItem(this.questions);
+        var possibleNextQuestions = this.questions.slice(); // Any question can be a possible next question...
+        possibleNextQuestions = possibleNextQuestions.filter(isNotCurrentQuestion); // ...except for the current question!
+        this.currentQuestion = getRandomItem(possibleNextQuestions);
     }
+}
+
+function isNotCurrentQuestion(question)
+{
+    return question !== questionBank.currentQuestion;
 }
 
 function getRandomItem(array)
@@ -17,7 +25,6 @@ function getRandomItem(array)
 
 // Begin questions
 questionBank.questions.push({
-    questionId: questionBank.questions.length,
     questionText: "What is 1 + 1?",
     choiceA: "2",
     choiceB: "4",
@@ -27,7 +34,6 @@ questionBank.questions.push({
 });
 
 questionBank.questions.push({
-    questionId: questionBank.questions.length,
     questionText: "What is the answer to everything?",
     choiceA: "7",
     choiceB: "The Game",
@@ -35,3 +41,5 @@ questionBank.questions.push({
     choiceD: "I dunno lol",
     correctChoice: 2
 });
+
+questionBank.selectNextQuestion();
