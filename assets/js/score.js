@@ -26,15 +26,6 @@ function addToScoreTable(initials, score)
     scoreTableElement.appendChild(newItem);
 }
 
-scoreTableEntries.push({
-    initials: "WOW",
-    score: "20"
-})
-scoreTableEntries.push({
-    initials: "WTF",
-    score: "3"
-})
-
 function populateScoreTable()
 {
     for(var i = 0; i < scoreTableEntries.length; i++)
@@ -42,5 +33,40 @@ function populateScoreTable()
         addToScoreTable(scoreTableEntries[i].initials, scoreTableEntries[i].score)
     }
 }
+
+var savedScoreCount = 0;
+
+function saveScore(initials, score)
+{
+    var saveScoreKey = "JSGauntletScore_" + savedScoreCount;
+    var saveScoreValue = {
+        initials: initials,
+        score: score
+    };
+    saveScoreValue = JSON.stringify(saveScoreValue);
+    window.localStorage.setItem(saveScoreKey, saveScoreValue);
+
+    savedScoreCount++;
+}
+
+function loadScores()
+{
+    var loadScoreKeySuffix = 0;
+    var loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
+    var loadScore = window.localStorage.getItem(loadScoreKey);
+    while(loadScore)
+    {
+        loadScore = JSON.parse(loadScore);
+        scoreTableEntries.push(loadScore);
+        loadScoreKeySuffix++;
+        loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
+        loadScore = window.localStorage.getItem(loadScoreKey);
+    }
+}
+
+saveScore("WOW", "20");
+saveScore("WTF", "3");
+
+loadScores();
 
 populateScoreTable();
