@@ -85,7 +85,7 @@ function checkTime()
 {
     if(time <= 0)
     {
-        alert("Time's up!")
         window.clearInterval(timeIntervalId);
+        window.location.href = "score.html";
     }
 }
