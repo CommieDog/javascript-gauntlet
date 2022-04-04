@@ -3,8 +3,11 @@ var finalScore = window.sessionStorage.getItem("FinalScore");
 //alert("Your final score is: " + finalScore);
 window.sessionStorage.removeItem("FinalScore");
 
+const scoresStorageKey = "JSGauntletScores";
+
 const scoreTableElement = document.querySelector("#score-table-body") // Technically this is just the body of the table, but this is where we add our data.
 const initialsInputElement = document.querySelector("#initials-input");
+const clearScoresButtonElement = document.querySelector("#clear-scores");
 
 var scoreTableEntries = [];
 
@@ -42,18 +45,23 @@ function clearScoreTable()
 // Saves score to storage
 function saveScoreToStorage(initials, score)
 {
-    var saveScoreKey = "JSGauntletScore_" + scoreTableEntries.length;
+    /*var saveScoreKey = "JSGauntletScore_" + scoreTableEntries.length;
     var saveScoreValue = {
         initials: initials,
         score: score
     };
     saveScoreValue = JSON.stringify(saveScoreValue);
-    window.localStorage.setItem(saveScoreKey, saveScoreValue);
+    window.localStorage.setItem(saveScoreKey, saveScoreValue);*/
+    scoreTableEntries.push({
+        initials: initials,
+        score: score
+    });
+    window.localStorage.setItem(scoresStorageKey, JSON.stringify(scoreTableEntries))
 }
 
 function loadScoresFromStorage()
 {
-    scoreTableEntries = []; // Clear current score array to force reload
+    /*scoreTableEntries = []; // Clear current score array to force reload
 
     var loadScoreKeySuffix = 0;
     var loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
@@ -65,6 +73,11 @@ function loadScoresFromStorage()
         loadScoreKeySuffix++;
         loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
         loadScore = window.localStorage.getItem(loadScoreKey);
+    }*/
+    scoreTableEntries = JSON.parse(window.localStorage.getItem(scoresStorageKey));
+    if(scoreTableEntries === null)
+    {
+        scoreTableEntries = []; // Fallback in case scores fail to load
     }
 }
 
@@ -80,3 +93,14 @@ document.addEventListener("submit", function(event)
     loadScoresFromStorage();
     populateScoreTable();
 });
+
+clearScoresButtonElement.addEventListener("click", function()
+{
+    /*window.localStorage.clear();*/
+    scoreTableEntries = [];
+    window.localStorage.setItem(scoresStorageKey, JSON.stringify(scoreTableEntries))
+
+    clearScoreTable();
+    loadScoresFromStorage();
+    populateScoreTable();
+})
