@@ -1,10 +1,10 @@
-var finalScore = 0;
+var finalScore = window.sessionStorage.getItem("FinalScore");
 
-finalScore = window.sessionStorage.getItem("FinalScore") || 0.5;
 //alert("Your final score is: " + finalScore);
 window.sessionStorage.removeItem("FinalScore");
 
 const scoreTableElement = document.querySelector("#score-table-body") // Technically this is just the body of the table, but this is where we add our data.
+const initialsInputElement = document.querySelector("#initials-input");
 
 var scoreTableEntries = [];
 
@@ -34,23 +34,27 @@ function populateScoreTable()
     }
 }
 
-var savedScoreCount = 0;
-
-function saveScore(initials, score)
+function clearScoreTable()
 {
-    var saveScoreKey = "JSGauntletScore_" + savedScoreCount;
+    scoreTableElement.replaceChildren([]);
+}
+
+// Saves score to storage
+function saveScoreToStorage(initials, score)
+{
+    var saveScoreKey = "JSGauntletScore_" + scoreTableEntries.length;
     var saveScoreValue = {
         initials: initials,
         score: score
     };
     saveScoreValue = JSON.stringify(saveScoreValue);
     window.localStorage.setItem(saveScoreKey, saveScoreValue);
-
-    savedScoreCount++;
 }
 
-function loadScores()
+function loadScoresFromStorage()
 {
+    scoreTableEntries = []; // Clear current score array to force reload
+
     var loadScoreKeySuffix = 0;
     var loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
     var loadScore = window.localStorage.getItem(loadScoreKey);
@@ -64,9 +68,15 @@ function loadScores()
     }
 }
 
-saveScore("WOW", "20");
-saveScore("WTF", "3");
-
-loadScores();
+loadScoresFromStorage();
 
 populateScoreTable();
+
+document.addEventListener("submit", function(event)
+{
+    event.preventDefault(); // default behavior is to reload page
+    saveScoreToStorage(initialsInputElement.value, finalScore);
+    clearScoreTable();
+    loadScoresFromStorage();
+    populateScoreTable();
+});
