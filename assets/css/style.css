@@ -81,6 +81,12 @@ footer h2 {
     margin: 5px;
 }
 
+.scroll-pane {
+    height: 600px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
 #score-table {
     width: 100%;
     display: table;
