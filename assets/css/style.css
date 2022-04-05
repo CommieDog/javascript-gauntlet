@@ -1,11 +1,32 @@
+:root {
+    --score-table-border: 2px solid black;
+}
+
 html
 {
     background-color: blanchedalmond;
+    width: auto;
+    margin: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 body {
+    margin: 0px;
+}
+
+header {
+    background-color: bisque;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+main {
     max-width: 900px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -28,24 +49,15 @@ p, a, button {
     font-size: 18px;
 }
 
-.clickable {
-    cursor: pointer;
-    background-color: darkred;
-    color: azure;
-    margin: 30px 0px;
-    padding: 20px;
-    border: 2px outset black;
-    border-radius: 20px;
-    text-decoration: none;
+footer h2 {
+    font-size: 24px;
+    text-align: center;
 }
 
-.quiz-choice {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.quiz-choice-text {
-    font-weight: normal;
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #begin-gauntlet {
@@ -57,9 +69,29 @@ p, a, button {
     margin: 10px auto;
 }
 
-footer h2 {
-    font-size: 24px;
-    text-align: center;
+/* Establishes common language for interactible parts of website */
+.clickable {
+    cursor: pointer;
+    background-color: darkred;
+    color: azure;
+    margin: 30px 0px;
+    padding: 20px;
+    border: 2px outset black;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.clickable:active {
+    background-color: darkslateblue;
+}
+
+.quiz-choice {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.quiz-choice-text {
+    font-weight: normal;
 }
 
 #quiz-header {
@@ -74,11 +106,16 @@ footer h2 {
     display: flex;
     flex-direction: column;
     justify-content: end;
+    min-width: 125px;
 }
 
 #score, #timer {
     height: 20px;
     margin: 5px;
+}
+
+#choices {
+    width: 100%;
 }
 
 #previous-choice-feedback {
@@ -93,8 +130,10 @@ footer h2 {
     color: darkred;
 }
 
+/* Begin score table selectors */
 .scroll-pane {
     height: 600px;
+    width: 100%;
     overflow-y: auto;
     scrollbar-gutter: stable;
 }
@@ -112,6 +151,9 @@ footer h2 {
 
 #score-table-header {
     display: table-header-group;
+    background-color: bisque;
+    font-weight: bold;
+    padding: 2px;
 }
 
 .score-table-header-cell {
@@ -119,6 +161,16 @@ footer h2 {
     font-size: 18px;
     text-align: center;
     padding: 10px;
+    border-top: var(--score-table-border);
+    border-bottom: var(--score-table-border);
+}
+
+.score-table-header-cell:first-child {
+    border-left: var(--score-table-border);
+}
+
+.score-table-header-cell:last-child {
+    border-right: var(--score-table-border);
 }
 
 #score-table-body {
@@ -130,6 +182,14 @@ footer h2 {
     height: 22px;
 }
 
+.score-table-row:nth-child(even) {
+    background-color: bisque; /* Alternating row colors */
+}
+
+.score-table-row:last-child .score-table-row-cell{
+    border-bottom: var(--score-table-border);
+}
+
 .score-table-row-cell {
     display: table-cell;
     font-size: 18px;
@@ -137,10 +197,12 @@ footer h2 {
     padding: 10px;
 }
 
-.center-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.score-table-row-cell:first-child {
+    border-left: var(--score-table-border);
+}
+
+.score-table-row-cell:last-child {
+    border-right: var(--score-table-border);
 }
 
 #try-again-wrapper {
