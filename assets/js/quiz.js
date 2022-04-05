@@ -108,17 +108,23 @@ function checkTimeRemaining()
 choicesElement.addEventListener("click", function(event)
 {
     var userChoice = getUserChoice(event.target);
-    processUserChoice(userChoice);
+    if(userChoice)
+    {
+        processUserChoice(userChoice);
+    }
 
     /**
      * Digs through the DOM to grab the user choice code represented in a given element
      * @param {*} targetElement the element whose corresponding user choice index to look up
-     * @returns the user choice code
+     * @returns the user choice code, if a valid choice was made
      */
     function getUserChoice(targetElement)
     {
         targetElement = getContainingDivElement(targetElement);
-        return targetElement.dataset.choice;
+        if(targetElement)
+        {
+            return targetElement.dataset.choice;
+        }
 
         /**
          * Climbs up through the DOM tree to get the closest containing <div> element. This is useful
