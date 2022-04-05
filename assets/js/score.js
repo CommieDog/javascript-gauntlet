@@ -1,11 +1,11 @@
 var finalScore = window.sessionStorage.getItem("FinalScore");
 
-//alert("Your final score is: " + finalScore);
 window.sessionStorage.removeItem("FinalScore");
 
 const scoresStorageKey = "JSGauntletScores";
 
-const scoreTableElement = document.querySelector("#score-table-body") // Technically this is just the body of the table, but this is where we add our data.
+const scoreTableElement = document.querySelector("#score-table-body"); // Technically this is just the body of the table, but this is where we add our data.
+const submitScoreForm = document.querySelector("#submit-score-form");
 const initialsInputElement = document.querySelector("#initials-input");
 const clearScoresButtonElement = document.querySelector("#clear-scores");
 
@@ -45,13 +45,6 @@ function clearScoreTable()
 // Saves score to storage
 function saveScoreToStorage(initials, score)
 {
-    /*var saveScoreKey = "JSGauntletScore_" + scoreTableEntries.length;
-    var saveScoreValue = {
-        initials: initials,
-        score: score
-    };
-    saveScoreValue = JSON.stringify(saveScoreValue);
-    window.localStorage.setItem(saveScoreKey, saveScoreValue);*/
     scoreTableEntries.push({
         initials: initials,
         score: score
@@ -61,19 +54,6 @@ function saveScoreToStorage(initials, score)
 
 function loadScoresFromStorage()
 {
-    /*scoreTableEntries = []; // Clear current score array to force reload
-
-    var loadScoreKeySuffix = 0;
-    var loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
-    var loadScore = window.localStorage.getItem(loadScoreKey);
-    while(loadScore)
-    {
-        loadScore = JSON.parse(loadScore);
-        scoreTableEntries.push(loadScore);
-        loadScoreKeySuffix++;
-        loadScoreKey = "JSGauntletScore_" + loadScoreKeySuffix.toString();
-        loadScore = window.localStorage.getItem(loadScoreKey);
-    }*/
     scoreTableEntries = JSON.parse(window.localStorage.getItem(scoresStorageKey));
     if(scoreTableEntries === null)
     {
@@ -85,18 +65,18 @@ loadScoresFromStorage();
 
 populateScoreTable();
 
-document.addEventListener("submit", function(event)
+submitScoreForm.addEventListener("submit", function(event)
 {
     event.preventDefault(); // default behavior is to reload page
     saveScoreToStorage(initialsInputElement.value, finalScore);
     clearScoreTable();
     loadScoresFromStorage();
     populateScoreTable();
+    submitScoreForm.style.visibility = "hidden"; // Oh, you wanted to spam the scoreboard with your score through multiple subissions? I don't think so!
 });
 
 clearScoresButtonElement.addEventListener("click", function()
 {
-    /*window.localStorage.clear();*/
     scoreTableEntries = [];
     window.localStorage.setItem(scoresStorageKey, JSON.stringify(scoreTableEntries))
 
