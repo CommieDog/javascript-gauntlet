@@ -8,7 +8,7 @@ const choiceCElement = document.querySelector("#choice-c-text");
 const choiceDElement = document.querySelector("#choice-d-text");
 const previousChoiceFeedbackElement = document.querySelector("#previous-choice-feedback");
 
-var time = 20;
+var time = 50;
 var score = 0;
 var feedbackTimerId;
 
