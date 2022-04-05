@@ -81,6 +81,18 @@ footer h2 {
     margin: 5px;
 }
 
+#previous-choice-feedback {
+    font-size: 20px;
+}
+
+.correct {
+    color: darkgreen;
+}
+
+.incorrect {
+    color: darkred;
+}
+
 .scroll-pane {
     height: 600px;
     overflow-y: auto;
