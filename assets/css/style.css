@@ -88,6 +88,7 @@ footer h2 {
 .quiz-choice {
     font-size: 20px;
     font-weight: bold;
+    user-select: none;
 }
 
 .quiz-choice-text {
