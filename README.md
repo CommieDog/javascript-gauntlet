@@ -66,17 +66,25 @@ Below the table is a small form that the user can use to enter initials and add 
 
 ## Features
 
-* A
+* Several multiple-choice questions built-in to the website
+  * Educational, subject-relevant material
+* Briefly displayed user feedback on answer to minimize distraction
+* Ability to save quiz scores for comparison with peers or one's previous self
+* Convienient table view of previous scores
 
 
 ## Technologies Used
 
-* A
+* HTML
+* CSS
+* JavaScript
+  * DOM API
+  * Web Storage API
 
 
 ## Future Work
 
-A
+The biggest potential feature for future work would be the addition of back end support. With a back end, JavaScript Gauntlet could maintain a store of questions on a database for easy manipulation and selection of customized subsets depending on user input. A back end score list could display scores from quizzes taken on other browers, or even lead to worldwide leaderborads for the most competitive.
 
 
 ## Author
